@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -22,7 +23,9 @@ public class Function_06_Test {
     // TODO la méthode retourne une chaîne de caractères de la forme [age=<AGE>] (exemple : [age=12])
     String formatAge(Supplier<Person> supplier) {
         // TODO
-        return null;
+    	Function<Supplier<Person>, String> function = sp -> "[age=" + sp.get().getAge() + "]";
+    	
+        return  function.apply(supplier);
     }
     // end::formatAge[]
 
@@ -30,7 +33,9 @@ public class Function_06_Test {
     @Test
     public void test_supplier_formatAge() throws Exception {
         // TODO compléter le test unitaire pour qu'il soit passant
-        String result = formatAge(null);
+    	
+    	Supplier<Person> sp = () -> new Person("John", "DOE", 35, null);
+        String result = formatAge(sp);
 
         assert result.equals("[age=35]");
     }
@@ -42,7 +47,7 @@ public class Function_06_Test {
         expectedException.expectMessage("require non null object");
 
         // TODO compléter le test unitaire pour qu'il soit passant
-        Supplier<String> supplier = null;
+        Supplier<String> supplier = () -> "require non null object";
 
         // Avec un paramètre null, cette méthode déclenche un NullPointerException
         Objects.requireNonNull(null, supplier);
