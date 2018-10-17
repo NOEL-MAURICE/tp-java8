@@ -73,7 +73,7 @@ public class Function_01_Test {
     // tag::intToAccountWithCompose[]
     // TODO Compléter la définition de cette fonction
     // TODO Utiliser la méthode compose pour réutiliser les fonctions intToPerson et personToAccount
-    private Function<Integer, Account> intToAccountWithCompose = i -> personToAccount.compose(intToPerson).apply(i);
+    private Function<Integer, Account> intToAccountWithCompose = personToAccount.compose(intToPerson);
     // end::intToAccountWithCompose[]
 
 
@@ -92,7 +92,7 @@ public class Function_01_Test {
     // tag::intToAccountWithAndThen[]
     // TODO Compléter la définition de cette fonction
     // TODO Utiliser la méthode andThen pour réutiliser les fonctions intToPerson et personToAccount
-    private Function<Integer, Account> intToAccountWithAndThen = i -> intToPerson.andThen(personToAccount).apply(i);
+    private Function<Integer, Account> intToAccountWithAndThen = intToPerson.andThen(personToAccount);
     // end::intToAccountWithAndThen[]
 
     @Test
